@@ -1,0 +1,21 @@
+/* globals.css */
+@import "tailwindcss";
+
+/* Tentukan warna tema gelap sebagai default di sini */
+:root {
+  --background: #111827; /* Mengatur warna latar belakang menjadi dark blue-gray */
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
