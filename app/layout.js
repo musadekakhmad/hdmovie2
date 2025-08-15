@@ -40,7 +40,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      {/* Menambahkan suppressHydrationWarning untuk mengatasi hydration error. */}
+      {/* Ini sering terjadi saat ada script pihak ketiga atau ekstensi browser yang memodifikasi tag body. */}
+      <body suppressHydrationWarning={true}>
         <Header />
         {/* AdsterraLayoutWrapper membungkus children (semua konten halaman) */}
         <AdsterraLayoutWrapper>
@@ -51,4 +53,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
