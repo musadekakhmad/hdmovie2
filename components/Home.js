@@ -110,7 +110,7 @@ const Home = () => {
       <section className="bg-gray-800 rounded-2xl p-8 shadow-2xl mb-12 transform hover:scale-105 transition-transform duration-300">
         <h1 className="text-3xl font-bold text-white mb-4">Estreno Ya: Free HD Movie & TV Show Streaming</h1>
         <p className="text-gray-300 text-justify leading-relaxed">
-          Estreno Yes is your premier destination for streaming free, high-quality movies and TV shows. Explore the collection of popular movies, trending movies and most talked about TV series. With an easy-to-use interface and smooth video player, we ensure a pleasant viewing experience. Start streaming today!
+          Estreno Ya is your one-stop destination for high-quality, free streaming of movies and TV shows. Explore our collection of popular movies, trending films, and the most talked-about TV series. With an easy-to-use interface and smooth video player, we ensure a pleasant viewing experience. Start streaming today!
         </p>
       </section>
 
@@ -132,3 +132,4 @@ const Home = () => {
 };
 
 export default Home;
+
