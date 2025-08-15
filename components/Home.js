@@ -2,11 +2,9 @@
 "use client";
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-// Import komponen MovieCard yang akan kita definisikan di sini untuk menjaga kode tetap mandiri.
-import MovieCard from '@/components/MovieCard';
+import MovieCard from '@/components/MovieCard'; // Gunakan komponen MovieCard dari folder components
 
 // URL dasar untuk API
-// PASTIKAN ANDA MENGGANTI INI DENGAN KUNCI API TMDB ANDA YANG BENAR
 const API_KEY = 'ISI DENGAN API KEY ANDA'; // <-- ISI DENGAN API KEY ANDA
 const BASE_URL = 'https://tmdb-api-proxy.argoyuwono119.workers.dev';
 
@@ -50,6 +48,7 @@ const useFetch = (url) => {
   return { data, loading, error };
 };
 
+
 // ===================================
 // Home Component
 // ===================================
@@ -62,7 +61,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       {/* Hero Section - Tinggi Disesuaikan */}
-      <div className="relative w-full h-screen overflow-hidden">
+      {/* Menambahkan suppressHydrationWarning untuk mengatasi hydration error dari ekstensi browser */}
+      <div className="relative w-full h-screen overflow-hidden" suppressHydrationWarning={true}>
           <img
               src="https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg"
               alt="Estreno Ya Banner"
