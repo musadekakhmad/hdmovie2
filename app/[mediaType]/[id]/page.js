@@ -41,18 +41,18 @@ export async function generateMetadata({ params }) {
     return notFound();
   }
 
-  const mediaTitle = media.title || media.name || 'Cine Visio';
-  const mediaDescription = media.overview || `Informasi tentang ${mediaTitle} di Cine Visio.`;
+  const mediaTitle = media.title || media.name || Estreno Ya';
+  const mediaDescription = media.overview || `Informasi tentang ${mediaTitle} di Estreno Ya.`;
   const mediaImage = media.backdrop_path ? `${IMAGE_BASE_URL}${media.backdrop_path}` : 'https://placehold.co/1200x630/1e40af/ffffff?text=Cine+Visio';
 
   return {
-    title: `${mediaTitle} | Cine Visio`,
+    title: `${mediaTitle} | Estreno Ya`,
     description: mediaDescription,
     openGraph: {
-      title: `${mediaTitle} | Cine Visio`,
+      title: `${mediaTitle} | Estreno Ya`,
       description: mediaDescription,
-      url: `https://cinevisio.netlify.app/${mediaType}/${media.id}`,
-      siteName: 'Cine Visio',
+      url: `https://estrenoya.netlify.app/${mediaType}/${media.id}`,
+      siteName: 'Estreno Ya',
       images: [
         {
           url: mediaImage,
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       site: '@WatchStream123',
       creator: '@WatchStream123',
-      title: `${mediaTitle} | Cine Visio`,
+      title: `${mediaTitle} | Estreno Ya`,
       description: mediaDescription,
       images: [mediaImage],
     },
