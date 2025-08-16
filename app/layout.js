@@ -50,13 +50,14 @@ export default function RootLayout({ children }) {
       {/* Menambahkan suppressHydrationWarning untuk mengatasi hydration error. */}
       {/* Ini sering terjadi saat ada script pihak ketiga atau ekstensi browser yang memodifikasi tag body. */}
       <body suppressHydrationWarning={true}>
-        <Header />
-        {/* AdsterraLayoutWrapper membungkus children (semua konten halaman) */}
         <AdsterraLayoutWrapper>
+          {/* Kontainer utama dengan lebar maksimum */}
+          {/* Memindahkan Header, konten, dan Footer ke dalam kontainer ini */}
           <div className="mx-auto max-w-7xl">
+            <Header />
             {children}
+            <Footer />
           </div>
-          <Footer />
         </AdsterraLayoutWrapper>
       </body>
     </html>
