@@ -1,3 +1,10 @@
+// ---------------------------------------------------------------- //
+// Nama File: components/MovieCard.js
+// Fungsi: Komponen untuk menampilkan setiap kartu film di beranda
+//         dan halaman lainnya. Menambahkan efek hover untuk
+//         interaksi visual yang lebih baik.
+// ---------------------------------------------------------------- //
+
 // components/MovieCard.js
 "use client";
 import Link from 'next/link';
