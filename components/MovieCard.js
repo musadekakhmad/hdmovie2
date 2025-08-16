@@ -50,7 +50,8 @@ export default function MovieCard({ media, mediaType }) {
             className="w-full h-auto object-cover transition-opacity duration-300 group-hover:opacity-80"
           />
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/70 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <h3 className="text-sm md:text-base font-semibold truncate">{mediaTitle}</h3>
+            {/* Mengatur ukuran teks judul agar responsif */}
+            <h3 className="text-sm sm:text-base md:text-lg font-semibold truncate">{mediaTitle}</h3>
           </div>
         </div>
       </Link>
