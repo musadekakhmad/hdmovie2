@@ -60,23 +60,21 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      {/* Hero Section - Tinggi Disesuaikan */}
-      {/* Menggunakan tinggi tetap yang responsif, bukan rasio aspek */}
-      {/* h-48 di layar kecil, md:h-64 di tablet, lg:h-96 di desktop */}
-      <div className="relative w-full h-48 md:h-64 lg:h-96 overflow-hidden" suppressHydrationWarning={true}>
+      {/* Hero Section - Tinggi Disesuaikan dan Diberi Efek */}
+      {/* Menambahkan efek rounded-xl dan shadow-2xl untuk mempercantik tepi */}
+      <div className="relative w-full h-48 md:h-64 lg:h-96 overflow-hidden rounded-xl shadow-2xl" suppressHydrationWarning={true}>
           <img
-              src="https://live.staticflickr.com/65535/54723855118_220a5f1b1c_b.jpg"
+              src="https://live.staticflickr.com/65535/54723804719_044a24ff60_b.jpg"
               alt="Estreno Ya Banner"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://placehold.co/1920x1080/0d1117/2d3138?text=Cineflix';
+                  e.target.src = 'https://placehold.co/1920x1080/0d1117/2d3138?text=Estreno Ya';
               }}
           />
       </div>
       
       {/* Container utama untuk konten dengan padding */}
-      {/* Menghapus kelas -mt-16 agar kembali ke tata letak sebelumnya */}
       <div className="px-4 md:px-8">
         {/* About Section */}
         <section className="bg-gray-800 rounded-2xl p-8 shadow-2xl mb-12 transform hover:scale-105 transition-transform duration-300">
