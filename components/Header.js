@@ -83,7 +83,7 @@ const Header = () => {
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <a href="/" className="text-xl md:text-2xl font-extrabold rainbow-text-header">Estreno Ya</a>
+            <a href="/" className="text-xl md:text-4xl font-extrabold rainbow-text-header">Estreno Ya</a>
           </div>
 
           {/* Navigation Menu (Dropdowns) */}
