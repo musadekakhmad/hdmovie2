@@ -65,7 +65,7 @@ export default function Home() {
       {/* h-48 di layar kecil, md:h-64 di tablet, lg:h-96 di desktop */}
       <div className="relative w-full h-48 md:h-64 lg:h-96 overflow-hidden" suppressHydrationWarning={true}>
           <img
-              src="https://live.staticflickr.com/65535/54722807982_af29f4a21c_b.jpg"
+              src="https://live.staticflickr.com/65535/54723855118_220a5f1b1c_b.jpg"
               alt="Estreno Ya Banner"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
