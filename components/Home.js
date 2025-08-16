@@ -64,7 +64,7 @@ export default function Home() {
       {/* Menambahkan efek rounded-xl dan shadow-2xl untuk mempercantik tepi */}
       <div className="relative w-full h-48 md:h-64 lg:h-96 overflow-hidden rounded-xl shadow-2xl" suppressHydrationWarning={true}>
           <img
-              src="https://live.staticflickr.com/65535/54723855118_220a5f1b1c_b.jpg.jpg"
+              src="https://live.staticflickr.com/65535/54723855118_220a5f1b1c_b.jpg"
               alt="Estreno Ya Banner"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
