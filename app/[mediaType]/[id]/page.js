@@ -41,9 +41,9 @@ export async function generateMetadata({ params }) {
     return notFound();
   }
 
-  const mediaTitle = media.title || media.name || Estreno Ya';
+  const mediaTitle = media.title || media.name || 'Estreno Ya';
   const mediaDescription = media.overview || `Informasi tentang ${mediaTitle} di Estreno Ya.`;
-  const mediaImage = media.backdrop_path ? `${IMAGE_BASE_URL}${media.backdrop_path}` : 'https://placehold.co/1200x630/1e40af/ffffff?text=Estreno-Ya';
+  const mediaImage = media.backdrop_path ? `${IMAGE_BASE_URL}${media.backdrop_path}` : 'https://placehold.co/1200x630/1e40af/ffffff?text=Estreno+Ya';
 
   return {
     title: `${mediaTitle} | Estreno Ya`,
