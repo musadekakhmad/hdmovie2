@@ -79,7 +79,7 @@ const Header = () => {
         }
         `}
       </style>
-      <header className="sticky top-0 z-50 p-4 bg-gray-800 backdrop-blur-md bg-opacity-70 shadow-lg font-sans">
+      <header className="sticky top-0 z-50 p-4 bg-gray-800 backdrop-blur-md bg-opacity-70 shadow-lg font-sans rounded-b-2xl shadow-2xl">
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
