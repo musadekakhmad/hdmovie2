@@ -12,20 +12,20 @@ import AdsterraLayoutWrapper from '../components/AdsterraLayoutWrapper'; // Impo
 // Menghapus import 'video.js/dist/video-js.css'; dari sini
 
 export const metadata = {
-  title: 'Cineflix | Free HD Movie & TV Show Streaming',
+  title: 'Estreno Ya | Free HD Movie & TV Show Streaming',
   description: 'Your ultimate destination for high-quality, free movie and TV show streaming..',
   // Meta tag Open Graph untuk Facebook
   openGraph: {
-    title: 'Cineflix | Free HD Movie & TV Show Streaming',
+    title: 'Estreno Ya | Free HD Movie & TV Show Streaming',
     description: 'Your ultimate destination for high-quality, free movie and TV show streaming..',
     url: 'https://estrenoya.netlify.app/',
-    siteName: 'Cineflix',
+    siteName: 'Estreno Ya',
     images: [
       {
         url: 'https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg',
         width: 1200,
         height: 630,
-        alt: 'Cineflix',
+        alt: 'Estreno Ya',
       },
     ],
     locale: 'en_US',
