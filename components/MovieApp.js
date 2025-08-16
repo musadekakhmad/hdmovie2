@@ -101,7 +101,7 @@ const HomePage = () => {
       </div>
 
       <div className="bg-gray-800 rounded-lg p-6 shadow-lg mb-8">
-        <h1 className="text-3xl font-bold text-white mb-4"> Estreno Ya: Free HD Movie & TV Show Streaming </h1>
+        <h1 className="text-3xl font-bold text-white mb-4">Estreno Ya: Free HD Movie & TV Show Streaming</h1>
         <p className="text-gray-300 text-justify">
           Estreno Ya is your ultimate destination for high-quality, free movie and TV show streaming. Explore our extensive collection of popular movies, trending films, and the most talked-about TV series. With an easy-to-use interface and a seamless video player, we ensure an enjoyable viewing experience. Start streaming today!
         </p>
