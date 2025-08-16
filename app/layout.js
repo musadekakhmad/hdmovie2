@@ -38,7 +38,7 @@ export const metadata = {
     card: 'summary_large_image',
     site: '@WatchStream123', // User Twitter Anda
     creator: '@WatchStream123',
-    title: 'Cineflix | Free HD Movie & TV Show Streaming',
+    title: 'Estreno Ya | Free HD Movie & TV Show Streaming',
     description: 'Your ultimate destination for high-quality, free movie and TV show streaming..',
     images: ['https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg'], // Ganti dengan URL gambar yang sesuai
   },
