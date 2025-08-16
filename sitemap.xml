@@ -1,8 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Halaman Utama -->
   <url>
     <loc>https://estrenoya.netlify.app/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+  </url>
+  <!-- Halaman Kategori Film -->
+  <url>
+    <loc>https://estrenoya.netlify.app/movie/category/popular</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://estrenoya.netlify.app/movie/category/now_playing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://estrenoya.netlify.app/movie/category/upcoming</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://estrenoya.netlify.app/movie/category/top_rated</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Halaman Kategori Acara TV -->
+  <url>
+    <loc>https://estrenoya.netlify.app/tv/category/popular</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://estrenoya.netlify.app/tv/category/airing_today</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://estrenoya.netlify.app/tv/category/on_the_air</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://estrenoya.netlify.app/tv/category/top_rated</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
