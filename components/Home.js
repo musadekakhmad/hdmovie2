@@ -61,24 +61,26 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
       {/* Hero Section - Tinggi Disesuaikan */}
-      {/* Menambahkan suppressHydrationWarning untuk mengatasi hydration error dari ekstensi browser */}
-      <div className="relative w-full h-screen overflow-hidden" suppressHydrationWarning={true}>
+      {/* Menggunakan tinggi tetap yang responsif, bukan rasio aspek */}
+      {/* h-48 di layar kecil, md:h-64 di tablet, lg:h-96 di desktop */}
+      <div className="relative w-full h-48 md:h-64 lg:h-96 overflow-hidden" suppressHydrationWarning={true}>
           <img
-              src="https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg"
-              alt="Estreno Ya Banner"
+              src="https://live.staticflickr.com/65535/54723804719_044a24ff60_b.jpg"
+              alt="Cineflix Banner"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://placehold.co/1920x1080/0d1117/2d3138?text=Estreno+Ya+Movie+Streaming+Banner';
+                  e.target.src = 'https://placehold.co/1920x1080/0d1117/2d3138?text=Cineflix';
               }}
           />
       </div>
       
       {/* Container utama untuk konten dengan padding */}
+      {/* Menghapus kelas -mt-16 agar kembali ke tata letak sebelumnya */}
       <div className="px-4 md:px-8">
         {/* About Section */}
         <section className="bg-gray-800 rounded-2xl p-8 shadow-2xl mb-12 transform hover:scale-105 transition-transform duration-300">
-          <h1 className="text-3xl font-bold text-white mb-4">Estreno Ya: Free HD Movie & TV Show Streaming</h1>
+          <h1 className="text-3xl font-bold text-white mb-4">Cineflix: Free HD Movie & TV Show Streaming</h1>
           <p className="text-gray-300 text-justify leading-relaxed">
             Estreno Ya is your one-stop destination for high-quality, free streaming of movies and TV shows. Explore our collection of popular movies, trending films, and the most talked-about TV series. With an easy-to-use interface and smooth video player, we ensure a pleasant viewing experience. Start streaming today!
           </p>
