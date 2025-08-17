@@ -38,12 +38,12 @@ export const handleAdsterraClick = (e, targetUrl) => {
 
         // Pemicu iklan pada klik ke-2, ke-6, ke-10, ke-14, dst.
         // Formula: (n-2) % 4 === 0, dimana n adalah jumlah klik.
-        if (clickCount > 1 && (clickCount - 2) % 4 === 0) {
+        if (clickCount > 1 && (clickCount - 2) % 5 === 0) {
             // Mencegah navigasi ke halaman detail
             e.preventDefault();
 
             // Membuka tautan iklan di tab baru
-            const adLink = ADSTERRA_DIRECT_LINKS[(clickCount - 2) / 4 % ADSTERRA_DIRECT_LINKS.length];
+            const adLink = ADSTERRA_DIRECT_LINKS[(clickCount - 2) / 5 % ADSTERRA_DIRECT_LINKS.length];
             window.open(adLink, '_blank');
             
             // Setelah membuka iklan, navigasi ke halaman tujuan
