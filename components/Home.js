@@ -54,47 +54,136 @@ const useFetch = (url) => {
 // ===================================
 
 export default function Home() {
-  // Ganti endpoint trending dengan endpoint untuk genre "Romance"
-  const genreId = 10749; // ID untuk genre Romance
-  const { data: genreData, loading: genreLoading, error: genreError } = useFetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}`);
+  const animationGenreId = 16;
+  
+  const [moviePage, setMoviePage] = useState(1);
+  const [tvPage, setTvPage] = useState(1);
+  const [allMovieData, setAllMovieData] = useState([]);
+  const [allTvData, setAllTvData] = useState([]);
+  const [movieLoading, setMovieLoading] = useState(true);
+  const [tvLoading, setTvLoading] = useState(true);
+  const [movieError, setMovieError] = useState(null);
+  const [tvError, setTvError] = useState(null);
+  const [hasMoreMovies, setHasMoreMovies] = useState(true);
+  const [hasMoreTv, setHasMoreTv] = useState(true);
+
+  // Effect untuk mengambil data film
+  useEffect(() => {
+    const fetchMovies = async () => {
+      setMovieLoading(true);
+      try {
+        const response = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${animationGenreId}&page=${moviePage}`);
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        const json = await response.json();
+        setAllMovieData(prevData => [...prevData, ...json.results]);
+        // Cek apakah ada lebih banyak halaman untuk dimuat
+        setHasMoreMovies(json.results.length === 20);
+      } catch (err) {
+        setMovieError(err.message);
+        console.error("Fetch movie error:", err);
+      } finally {
+        setMovieLoading(false);
+      }
+    };
+    fetchMovies();
+  }, [moviePage]);
+
+  // Effect untuk mengambil data TV
+  useEffect(() => {
+    const fetchTv = async () => {
+      setTvLoading(true);
+      try {
+        const response = await fetch(`${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=${animationGenreId}&page=${tvPage}`);
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        const json = await response.json();
+        setAllTvData(prevData => [...prevData, ...json.results]);
+        // Cek apakah ada lebih banyak halaman untuk dimuat
+        setHasMoreTv(json.results.length === 20);
+      } catch (err) {
+        setTvError(err.message);
+        console.error("Fetch TV error:", err);
+      } finally {
+        setTvLoading(false);
+      }
+    };
+    fetchTv();
+  }, [tvPage]);
+
+  const handleLoadMoreMovies = () => {
+    setMoviePage(prevPage => prevPage + 1);
+  };
+
+  const handleLoadMoreTv = () => {
+    setTvPage(prevPage => prevPage + 1);
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white font-sans">
-      {/* Hero Section - Tinggi Disesuaikan dan Diberi Efek */}
-      {/* Menambahkan efek rounded-xl dan shadow-2xl untuk mempercantik tepi */}
-      <div className="relative w-full h-48 md:h-64 lg:h-96 overflow-hidden rounded-xl shadow-2xl" suppressHydrationWarning={true}>
+      {/* Bagian Hero - Tinggi Disesuaikan, menambahkan jarak dengan bagian atas */}
+      <div className="relative mt-8 w-full h-48 md:h-64 lg:h-96 overflow-hidden rounded-xl shadow-2xl" suppressHydrationWarning={true}>
           <img
-              src="https://live.staticflickr.com/65535/54723855118_220a5f1b1c_b.jpg"
-              alt="Estreno Ya Banner"
+              src="https://live.staticflickr.com/65535/54734663743_992c7169cc_b.jpg"
+              alt="Libra Sinema Banner"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
                   e.target.onerror = null;
-                  e.target.src = 'https://placehold.co/1920x1080/0d1117/2d3138?text=Estreno Ya';
+                  e.target.src = 'https://placehold.co/1920x1080/0d1117/2d3138?text=Libra-Sinema';
               }}
           />
       </div>
       
-      {/* Container utama untuk konten dengan padding */}
+      {/* Kontainer utama untuk konten dengan padding */}
       <div className="px-4 md:px-8">
-        {/* About Section */}
-        <section className="bg-gray-800 rounded-2xl p-8 shadow-2xl mb-12 transform hover:scale-105 transition-transform duration-300">
-          <h1 className="text-3xl font-bold text-white mb-4">Estreno Ya: Free HD Movie & TV Show Streaming</h1>
-          <p className="text-gray-300 text-justify leading-relaxed">
-            Estreno Ya is your one-stop destination for high-quality, free streaming of movies and TV shows. Explore our collection of popular movies, trending films, and the most talked-about TV series. With an easy-to-use interface and smooth video player, we ensure a pleasant viewing experience. Start streaming today!
-          </p>
+        
+        {/* Bagian Film Animasi */}
+        <section className="mt-12 mb-12">
+          <h2 className="text-3xl font-bold text-white mb-6">Film Animasi</h2>
+          {movieLoading && <p className="text-center text-gray-400">Memuat film animasi...</p>}
+          {movieError && <p className="text-center text-red-400">Kesalahan: {movieError}</p>}
+          {allMovieData.length > 0 && (
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+                {allMovieData.filter(movie => movie.poster_path).map((movie) => (
+                  <MovieCard key={movie.id} media={movie} mediaType="movie" />
+                ))}
+              </div>
+              {hasMoreMovies && (
+                <div className="text-center mt-8">
+                  <button
+                    onClick={handleLoadMoreMovies}
+                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition-colors duration-300"
+                  >
+                    Tampilkan Lebih
+                  </button>
+                </div>
+              )}
+            </>
+          )}
         </section>
 
-        {/* Genre Section */}
+        {/* Bagian Serial TV Animasi */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Romantic Movies</h2>
-          {genreLoading && <p className="text-center text-gray-400">Loading romantic movies...</p>}
-          {genreError && <p className="text-center text-red-400">Error: {genreError}</p>}
-          {genreData && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-              {genreData.results.filter(movie => movie.poster_path).slice(0, 20).map((movie) => (
-                <MovieCard key={movie.id} media={movie} mediaType="movie" />
-              ))}
-            </div>
+          <h2 className="text-3xl font-bold text-white mb-6">Serial TV Animasi</h2>
+          {tvLoading && <p className="text-center text-gray-400">Memuat serial TV animasi...</p>}
+          {tvError && <p className="text-center text-red-400">Kesalahan: {tvError}</p>}
+          {allTvData.length > 0 && (
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+                {allTvData.filter(tv => tv.poster_path).map((tv) => (
+                  <MovieCard key={tv.id} media={tv} mediaType="tv" />
+                ))}
+              </div>
+              {hasMoreTv && (
+                <div className="text-center mt-8">
+                  <button
+                    onClick={handleLoadMoreTv}
+                    className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg transition-colors duration-300"
+                  >
+                    Tampilkan Lebih
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </section>
       </div>

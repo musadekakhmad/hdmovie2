@@ -41,18 +41,18 @@ export async function generateMetadata({ params }) {
     return notFound();
   }
 
-  const mediaTitle = media.title || media.name || 'Estreno Ya';
-  const mediaDescription = media.overview || `Informasi tentang ${mediaTitle} di Estreno Ya.`;
-  const mediaImage = media.backdrop_path ? `${IMAGE_BASE_URL}${media.backdrop_path}` : 'https://placehold.co/1200x630/1e40af/ffffff?text=Estreno+Ya';
+  const mediaTitle = media.title || media.name || 'Libra Sinema';
+  const mediaDescription = media.overview || `Informasi tentang ${mediaTitle} di Libra Sinema.`;
+  const mediaImage = media.backdrop_path ? `${IMAGE_BASE_URL}${media.backdrop_path}` : 'https://placehold.co/1200x630/1e40af/ffffff?text=Libra+Sinema';
 
   return {
-    title: `${mediaTitle} | Estreno Ya`,
+    title: `${mediaTitle} | Libra Sinema`,
     description: mediaDescription,
     openGraph: {
-      title: `${mediaTitle} | Estreno Ya`,
+      title: `${mediaTitle} | Libra Sinema`,
       description: mediaDescription,
       url: `https://estrenoya.netlify.app/${mediaType}/${media.id}`,
-      siteName: 'Estreno Ya',
+      siteName: 'Libra Sinema',
       images: [
         {
           url: mediaImage,
@@ -68,7 +68,7 @@ export async function generateMetadata({ params }) {
       card: 'summary_large_image',
       site: '@WatchStream123',
       creator: '@WatchStream123',
-      title: `${mediaTitle} | Estreno Ya`,
+      title: `${mediaTitle} | Libra Sinema`,
       description: mediaDescription,
       images: [mediaImage],
     },

@@ -8,27 +8,29 @@
 import './globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AdsterraLayoutWrapper from '../components/AdsterraLayoutWrapper'; // Impor komponen wrapper baru
+import AdsterraLayoutWrapper from '../components/AdsterraLayoutWrapper'; 
 // Menghapus import 'video.js/dist/video-js.css'; dari sini
 
 export const metadata = {
-  title: 'Estreno Ya | Free HD Movie & TV Show Streaming',
-  description: 'Your ultimate destination for high-quality, free movie and TV show streaming..',
+  // Mengubah judul dan deskripsi ke bahasa Indonesia
+  title: 'Libra Sinema | Nonton Film Gratis dan Streaming Serial Tv',
+  description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
   // Meta tag Open Graph untuk Facebook
   openGraph: {
-    title: 'Estreno Ya | Free HD Movie & TV Show Streaming',
-    description: 'Your ultimate destination for high-quality, free movie and TV show streaming..',
-    url: 'https://estrenoya.netlify.app/',
-    siteName: 'Estreno Ya',
+    title: 'Libra Sinema | Nonton Film Gratis dan Streaming Serial Tv',
+    description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
+    url: 'https://LibraSinema.netlify.app/',
+    siteName: 'Libra Sinema',
     images: [
       {
         url: 'https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg',
         width: 1200,
         height: 630,
-        alt: 'Estreno Ya',
+        alt: 'Libra Sinema',
       },
     ],
-    locale: 'en_US',
+    // Mengubah locale ke Indonesia
+    locale: 'id_ID',
     type: 'website',
     // Properti khusus untuk Facebook, 'og:app_id'
     appId: 'librasinema',
@@ -38,15 +40,16 @@ export const metadata = {
     card: 'summary_large_image',
     site: '@WatchStream123', // User Twitter Anda
     creator: '@WatchStream123',
-    title: 'Estreno Ya | Free HD Movie & TV Show Streaming',
-    description: 'Your ultimate destination for high-quality, free movie and TV show streaming..',
+    // Mengubah judul dan deskripsi ke bahasa Indonesia
+    title: 'Libra Sinema | Nonton Film Gratis dan Streaming Serial Tv',
+    description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
     images: ['https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg'], // Ganti dengan URL gambar yang sesuai
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="id">
       {/* Menambahkan suppressHydrationWarning untuk mengatasi hydration error. */}
       {/* Ini sering terjadi saat ada script pihak ketiga atau ekstensi browser yang memodifikasi tag body. */}
       <body suppressHydrationWarning={true}>

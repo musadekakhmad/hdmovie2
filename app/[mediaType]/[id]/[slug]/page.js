@@ -33,8 +33,8 @@ export async function generateMetadata({ params }) {
     return {};
   }
 
-  const title = `${details.title || details.name} | Estrenoya`;
-  const description = details.overview || 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.';
+  const title = `${details.title || details.name} | Libra Sinema`;
+  const description = details.overview || 'Pusat Streaming film dan acara TV gratis berkualitas tinggi untuk Anda.';
   const imageUrl = details.poster_path
     ? `https://image.tmdb.org/t/p/original${details.poster_path}`
     : 'https://placehold.co/1200x630/000000/FFFFFF?text=No+Image';
@@ -45,8 +45,8 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: title,
       description: description,
-      url: `https://estrenoya.netlify.app/${mediaType}/${id}/${slug}`,
-      siteName: 'Estrenoya',
+      url: `https://LibraSinema.netlify.app/${mediaType}/${id}/${slug}`,
+      siteName: 'Libra Sinema',
       images: [
         {
           url: imageUrl,
@@ -80,7 +80,7 @@ export async function generateMetadata({ params }) {
 async function getMediaDetails(mediaType, id) {
   const res = await fetch(`${BASE_URL}/${mediaType}/${id}?api_key=${API_KEY}`);
   if (!res.ok) {
-    notFound();
+    return null; // Mengembalikan null agar notFound() dipanggil di luar
   }
   return res.json();
 }
@@ -132,8 +132,6 @@ const getDirector = (crew) => {
   Ini mengambil semua data yang diperlukan dan menampilkannya.
 */
 export default async function MediaDetailPage({ params }) {
-  // Tunggu (await) objek params sebelum mendekonstruksi propertinya.
-  // Ini diperlukan di Next.js 14 untuk mencegah error akses asinkron.
   const awaitedParams = await params;
   const { mediaType, id } = awaitedParams;
 
@@ -144,6 +142,10 @@ export default async function MediaDetailPage({ params }) {
     getSimilarMedia(mediaType, id),
     getMediaReviews(mediaType, id)
   ]);
+  
+  if (!details) {
+    notFound();
+  }
 
   const director = getDirector(credits.crew);
   const officialTrailer = videos.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
@@ -295,7 +297,7 @@ export default async function MediaDetailPage({ params }) {
           {similarMovies.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
               {similarMovies.map(item => (
-                <MovieCard key={item.id} media={item} mediaType={mediaType} />
+                <MovieCard key={item.id} media={item} mediaType={item.media_type} />
               ))}
             </div>
           ) : (

@@ -1,56 +1,50 @@
 // app/search/[query]/page.js
+// This page is a Server Component, responsible for fetching search results.
 
-'use client';
-import { useState, useEffect, useCallback } from 'react';
 import { notFound } from 'next/navigation';
 import MovieCard from '@/components/MovieCard';
+import Link from 'next/link';
 
 // Konfigurasi API
 const API_KEY = ''; // <-- ISI DENGAN API KEY ANDA
 const BASE_URL = 'https://tmdb-api-proxy.argoyuwono119.workers.dev';
 
-// Custom Hook untuk fetch data
-const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const json = await response.json();
-      setData(json);
-    } catch (err) {
-      setError(err.message);
-      console.error("Fetch error:", err);
-    } finally {
-      setLoading(false);
+/*
+  Fungsi Pengambil Data untuk Halaman Pencarian
+  Ini adalah fungsi asinkron yang mengambil hasil pencarian dari API.
+  Fungsi ini dipanggil langsung di dalam Server Component.
+*/
+async function getSearchResults(query) {
+  try {
+    const response = await fetch(`${BASE_URL}/search/multi?query=${encodeURIComponent(query)}&api_key=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
     }
-  }, [url]);
+    const data = await response.json();
+    return data.results || [];
+  } catch (error) {
+    console.error("Fetch error:", error);
+    return []; // Mengembalikan array kosong jika ada kesalahan
+  }
+}
 
-  useEffect(() => {
-    if (url) {
-      fetchData();
-    }
-  }, [url, fetchData]);
+/*
+  Komponen Halaman Pencarian Utama
+  Ini adalah komponen React asinkron yang merender seluruh halaman hasil pencarian.
+  Komponen ini mengambil query dari URL dan memuat data yang sesuai.
+*/
+export default async function SearchPage({ params }) {
+  // Menunggu params untuk mendapatkan properti query
+  const awaitedParams = await params;
+  const searchQuery = awaitedParams.query;
 
-  return { data, loading, error };
-};
-
-export default function SearchPage({ params }) {
-  const searchQuery = params.query;
-  const { data, loading, error } = useFetch(`${BASE_URL}/search/multi?query=${encodeURIComponent(searchQuery)}&api_key=${API_KEY}`);
-
+  // Memeriksa jika searchQuery tidak ada, jika demikian, tampilkan halaman 404
   if (!searchQuery) {
     notFound();
   }
 
-  const results = data?.results || [];
+  // Mengambil hasil pencarian langsung di komponen server
+  const results = await getSearchResults(searchQuery);
 
   return (
     <div className="container mx-auto p-4 md:p-8 min-h-screen bg-gray-900 text-white">
@@ -58,34 +52,22 @@ export default function SearchPage({ params }) {
         Hasil Pencarian untuk "{decodeURIComponent(searchQuery)}"
       </h1>
       
-      {loading && (
-        <div className="flex justify-center items-center h-64">
-          <div className="loading-spinner"></div>
-        </div>
-      )}
-
-      {error && (
-        <div className="error-message p-4 bg-red-800 rounded-md">
-          <p>Terjadi kesalahan saat mengambil data: {error}. Pastikan API key Anda valid.</p>
-        </div>
-      )}
-
-      {!loading && !error && results.length > 0 && (
+      {/* Menampilkan hasil pencarian jika ada */}
+      {results.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
           {results
             .filter(item => item.poster_path) // Filter item tanpa poster
             .map(item => (
-              <MovieCard key={item.id} media={item} mediaType={item.media_type} />
+              <MovieCard key={item.id} media={item} mediaType={item.media_type || 'movie'} />
             ))}
         </div>
-      )}
-
-      {!loading && !error && results.length === 0 && (
-        <div className="flex justify-center items-center h-64">
-          <p className="text-xl text-gray-500">Tidak ada hasil yang ditemukan.</p>
+      ) : (
+        // Menampilkan pesan jika tidak ada hasil
+        <div className="text-center py-10">
+          <p className="text-xl text-gray-400">Maaf, tidak ada hasil yang ditemukan untuk pencarian Anda.</p>
+          <p className="text-gray-500 mt-2">Coba kata kunci lain atau kembali ke <Link href="/" className="text-blue-500 hover:underline">Halaman Utama</Link>.</p>
         </div>
       )}
     </div>
   );
 }
-
