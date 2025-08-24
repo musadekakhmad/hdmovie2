@@ -19,7 +19,7 @@ export const metadata = {
   openGraph: {
     title: 'Libra Sinema | Nonton Film Gratis dan Streaming Serial Tv',
     description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
-    url: 'https://LibraSinema.netlify.app/',
+    url: 'https://librasinema.netlify.app/',
     siteName: 'Libra Sinema',
     images: [
       {
