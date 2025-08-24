@@ -15,9 +15,6 @@ export const metadata = {
   // Mengubah judul dan deskripsi ke bahasa Indonesia
   title: 'Libra Sinema | Nonton Film Gratis dan Streaming Serial Tv',
   description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
-  // Menambahkan tag verifikasi di sini untuk Next.js 13+
-  verification: {
-    google: 'Op253moeSLgz53Zc2b4oZ0oc088akfDPrQLeRsQA008',
   // Meta tag Open Graph untuk Facebook
   openGraph: {
     title: 'Libra Sinema | Nonton Film Gratis dan Streaming Serial Tv',
@@ -48,7 +45,7 @@ export const metadata = {
     description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
     images: ['https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg'], // Ganti dengan URL gambar yang sesuai
   },
-}
+}; 
 
 export default function RootLayout({ children }) {
   return (
