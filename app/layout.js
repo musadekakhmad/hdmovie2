@@ -48,7 +48,7 @@ export const metadata = {
     description: 'Tujuan utama Anda untuk streaming film dan acara TV gratis berkualitas tinggi.',
     images: ['https://live.staticflickr.com/65535/54707174696_49edde76e3_b.jpg'], // Ganti dengan URL gambar yang sesuai
   },
-};
+}
 
 export default function RootLayout({ children }) {
   return (
