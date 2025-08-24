@@ -1,21 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- URL halaman utama -->
    <url>
       <loc>https://librasinema.netlify.app/</loc>
-      <lastmod>2024-08-25</lastmod>
-      <changefreq>weekly</changefreq>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
+      <changefreq>daily</changefreq>
       <priority>1.0</priority>
    </url>
+   
+   <!-- Halaman "Tentang Kami" -->
    <url>
       <loc>https://librasinema.netlify.app/about</loc>
-      <lastmod>2024-08-25</lastmod>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.8</priority>
    </url>
+   
+   <!-- Halaman kategori film populer -->
    <url>
-      <loc>https://librasinema.netlify.app/movie/298412/doraemon-the-movie-the-new-nobitas-great-demon-pogo-on-the-planet-of-five-explorers</loc>
-      <lastmod>2024-08-25</lastmod>
+      <loc>https://librasinema.netlify.app/movies/category/popular</loc>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
       <changefreq>daily</changefreq>
-      <priority>0.9</priority>
+      <priority>0.8</priority>
    </url>
+   
+   <!-- Halaman kategori serial TV populer -->
+   <url>
+      <loc>https://librasinema.netlify.app/tv/category/popular</loc>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
+      <changefreq>daily</changefreq>
+      <priority>0.8</priority>
+   </url>
+   
+   <!-- Halaman genre serial TV -->
+   <url>
+      <loc>https://librasinema.netlify.app/genre/tv/9648</loc>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   
+   <!-- Halaman detail film spesifik -->
+   <url>
+      <loc>https://librasinema.netlify.app/movie/911430/f1</loc>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Halaman detail film "Wrong Turn 2: Dead End" -->
+   <url>
+      <loc>https://librasinema.netlify.app/movie/13186/wrong-turn-2-dead-end</loc>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+
+   <!-- Halaman detail film "The Skin I Live In" -->
+   <url>
+      <loc>https://librasinema.netlify.app/movie/63311/the-skin-i-live-in</loc>
+      <lastmod>2025-08-24T00:00:00+00:00</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   
 </urlset>
