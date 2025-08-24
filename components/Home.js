@@ -122,7 +122,7 @@ export default function Home() {
       {/* Bagian Hero - Tinggi Disesuaikan, menambahkan jarak dengan bagian atas */}
       <div className="relative mt-8 w-full h-48 md:h-64 lg:h-96 overflow-hidden rounded-xl shadow-2xl" suppressHydrationWarning={true}>
           <img
-              src="https://live.staticflickr.com/65535/54734663743_992c7169cc_b.jpg"
+              src="https://live.staticflickr.com/65535/54740762052_47e1a717e8_b.jpg"
               alt="Libra Sinema Banner"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
