@@ -13,20 +13,30 @@ import Image from 'next/image';
   BASE_URL mengarah ke proxy TMDB untuk menghindari masalah CORS.
   IMAGE_BASE_URL adalah URL dasar untuk gambar poster.
 */
-const API_KEY = ''; // <-- ISI DENGAN API KEY ANDA
+const API_KEY = 'tmdb-api-proxy.argoyuwono119.workers.dev'; // <-- SILAKAN ISI DENGAN API KEY TMDB ANDA DI SINI
 const BASE_URL = 'https://tmdb-api-proxy.argoyuwono119.workers.dev';
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+// URL dasar untuk gambar OG (backdrop)
+const IMAGE_BASE_URL_OG = 'https://image.tmdb.org/t/p/w1280';
+// URL dasar untuk gambar poster
+const IMAGE_BASE_URL_POSTER = 'https://image.tmdb.org/t/p/w500';
 
 /*
   Fungsi untuk mendapatkan metadata dinamis (Penting untuk SEO)
   Ini akan membuat tag Open Graph dan Twitter Card yang spesifik untuk setiap halaman.
 */
 export async function generateMetadata({ params }) {
-  // Tunggu objek params di sini
+  // Periksa apakah API Key telah diisi
+  if (!API_KEY) {
+    console.error("Kesalahan: API KEY belum diisi. Silakan tambahkan TMDB API Key Anda.");
+    return {
+      title: 'Kesalahan Konfigurasi',
+      description: 'API Key belum diisi. Silakan periksa konfigurasi.',
+    };
+  }
+
   const awaitedParams = await params;
   const { mediaType, id, slug } = awaitedParams;
 
-  // Mendapatkan detail film atau acara TV
   const res = await fetch(`${BASE_URL}/${mediaType}/${id}?api_key=${API_KEY}`);
   const details = res.ok ? await res.json() : null;
 
@@ -36,9 +46,17 @@ export async function generateMetadata({ params }) {
 
   const title = `${details.title || details.name} | Libra Sinema`;
   const description = details.overview || 'Pusat Streaming film dan acara TV gratis berkualitas tinggi untuk Anda.';
-  const imageUrl = details.poster_path
-    ? `https://image.tmdb.org/t/p/original${details.poster_path}`
+
+  // Perbaikan utama: Prioritaskan gambar backdrop untuk Open Graph.
+  // Gambar backdrop (w1280) lebih cocok dengan rasio 1.91:1
+  const ogImageUrl = details.backdrop_path
+    ? `${IMAGE_BASE_URL_OG}${details.backdrop_path}`
     : 'https://placehold.co/1200x630/000000/FFFFFF?text=No+Image';
+
+  // Gambar poster tetap digunakan untuk tampilan di dalam halaman.
+  const posterUrl = details.poster_path
+    ? `${IMAGE_BASE_URL_POSTER}${details.poster_path}`
+    : 'https://placehold.co/500x750?text=No+Image';
 
   return {
     title: title,
@@ -50,13 +68,14 @@ export async function generateMetadata({ params }) {
       siteName: 'Libra Sinema',
       images: [
         {
-          url: imageUrl,
-          width: 500,
-          height: 750,
+          url: ogImageUrl,
+          // Gunakan dimensi yang sesuai dengan gambar backdrop
+          width: 1280,
+          height: 720,
           alt: title,
         },
       ],
-      locale: 'en_US',
+      locale: 'id_ID', // Ganti en_US ke id_ID
       type: 'website',
       appId: 'cut.erna.984',
     },
@@ -66,7 +85,7 @@ export async function generateMetadata({ params }) {
       creator: '@WatchStream123',
       title: title,
       description: description,
-      images: [imageUrl],
+      images: [ogImageUrl],
     },
   };
 }
@@ -81,7 +100,7 @@ export async function generateMetadata({ params }) {
 async function getMediaDetails(mediaType, id) {
   const res = await fetch(`${BASE_URL}/${mediaType}/${id}?api_key=${API_KEY}`);
   if (!res.ok) {
-    return null; // Mengembalikan null agar notFound() dipanggil di luar
+    return null;
   }
   return res.json();
 }
@@ -159,8 +178,8 @@ export default async function MediaDetailPage({ params }) {
   const mediaTagline = details.tagline;
   const mediaOverview = details.overview;
   const mediaReleaseDate = details.release_date || details.first_air_date;
-  const runtime = details.runtime; // Untuk film
-  const episodeRuntime = details.episode_run_time?.[0]; // Untuk acara TV
+  const runtime = details.runtime;
+  const episodeRuntime = details.episode_run_time?.[0];
   const status = details.status;
   const originalLanguage = details.original_language;
   const homepage = details.homepage;
@@ -174,7 +193,7 @@ export default async function MediaDetailPage({ params }) {
           <div className="md:w-1/3 flex-shrink-0 p-6 md:p-8 flex justify-center">
             <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105">
               <MovieImage
-                src={details.poster_path ? `${IMAGE_BASE_URL}${details.poster_path}` : 'https://placehold.co/500x750?text=No+Image'}
+                src={details.poster_path ? `${IMAGE_BASE_URL_POSTER}${details.poster_path}` : 'https://placehold.co/500x750?text=No+Image'}
                 alt={`Poster for ${mediaTitle}`}
                 className="w-full h-auto"
               />
