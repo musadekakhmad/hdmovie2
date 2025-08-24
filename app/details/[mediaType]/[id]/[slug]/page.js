@@ -25,13 +25,13 @@ export async function generateMetadata({ params }) {
     const mediaTitle = data.title || data.name;
 
     return {
-      title: `${mediaTitle} | Estrenoya`,
-      description: data.overview || `Informasi tentang ${mediaTitle} di Estrenoya.`,
+      title: `${mediaTitle} | Libra Sinema`,
+      description: data.overview || `Informasi tentang ${mediaTitle} di Libra Sinema.`,
     };
   } catch (err) {
     console.error('Error fetching metadata:', err);
     return {
-      title: 'Halaman Tidak Ditemukan | Estrenoya',
+      title: 'Halaman Tidak Ditemukan | Libra Sinema',
       description: 'Halaman yang Anda cari tidak ditemukan.',
     };
   }
