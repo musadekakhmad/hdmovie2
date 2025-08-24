@@ -135,7 +135,7 @@ export default function Home() {
       {/* Kontainer utama untuk konten dengan padding */}
       <div className="px-4 md:px-8">
         {/* Menambahkan tag h1 di sini */}
-        <h1 className="text-4xl font-bold text-center mt-8 mb-12 text-white leading-tight md:text-5xl">
+        <h1 className="text-3xl font-bold text-center mt-8 mb-12 text-white leading-tight md:text-4xl">
           Libra Sinema: Pusat nonton streaming film dan acara TV gratis berkualitas tinggi untuk Anda.
         </h1>
         
