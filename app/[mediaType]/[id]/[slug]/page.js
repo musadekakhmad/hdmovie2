@@ -5,6 +5,7 @@ import MovieImage from '@/components/MovieImage';
 import MovieCard from '@/components/MovieCard';
 import WatchNowButton from '@/components/WatchNowButton';
 import Link from 'next/link';
+import Image from 'next/image';
 
 /*
   Konfigurasi API
@@ -142,7 +143,7 @@ export default async function MediaDetailPage({ params }) {
     getSimilarMedia(mediaType, id),
     getMediaReviews(mediaType, id)
   ]);
-  
+
   if (!details) {
     notFound();
   }
@@ -161,119 +162,149 @@ export default async function MediaDetailPage({ params }) {
   const runtime = details.runtime; // Untuk film
   const episodeRuntime = details.episode_run_time?.[0]; // Untuk acara TV
   const status = details.status;
+  const originalLanguage = details.original_language;
+  const homepage = details.homepage;
 
   return (
-    <div className="bg-gray-900 text-gray-200 min-h-screen">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="bg-gray-800 rounded-xl shadow-xl overflow-hidden md:flex">
-          <div className="md:w-1/3 p-4">
-            <MovieImage
-              src={details.poster_path ? `${IMAGE_BASE_URL}${details.poster_path}` : 'https://placehold.co/500x750?text=No+Image'}
-              alt={`Poster for ${mediaTitle}`}
-              className="w-full h-auto rounded-lg shadow-md"
-            />
+    <div className="bg-gray-850 text-gray-200 min-h-screen py-8">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="bg-gray-900 rounded-3xl shadow-2xl overflow-hidden md:flex flex-col md:flex-row items-start">
+          
+          {/* Movie Poster Section */}
+          <div className="md:w-1/3 flex-shrink-0 p-6 md:p-8 flex justify-center">
+            <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-lg transform transition-transform duration-500 hover:scale-105">
+              <MovieImage
+                src={details.poster_path ? `${IMAGE_BASE_URL}${details.poster_path}` : 'https://placehold.co/500x750?text=No+Image'}
+                alt={`Poster for ${mediaTitle}`}
+                className="w-full h-auto"
+              />
+            </div>
           </div>
-          <div className="md:w-2/3 p-8">
-            <h1 className="text-4xl font-extrabold text-white leading-tight mb-2">{mediaTitle}</h1>
+          
+          {/* Movie Details Section */}
+          <div className="md:w-2/3 flex flex-col p-6 md:p-8">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight tracking-wide mb-2">
+              {mediaTitle}
+            </h1>
             {mediaTagline && (
-              <h2 className="text-xl font-light text-gray-400 mb-4">{mediaTagline}</h2>
+              <h2 className="text-lg italic font-light text-gray-400 mb-6">
+                &quot;{mediaTagline}&quot;
+              </h2>
             )}
-            
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-white mb-2">Movie Details</h2>
-              <div className="flex items-center text-yellow-500 mb-2">
-                <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+
+            {/* Rating and Release Date */}
+            <div className="flex items-center text-gray-300 space-x-4 mb-6">
+              <div className="flex items-center text-yellow-500">
+                {/* Star Icon */}
+                <svg className="w-5 h-5 fill-current mr-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#facc15"/>
                 </svg>
-                <span className="ml-1 text-gray-300">{details.vote_average?.toFixed(1)}</span>
-                <span className="mx-2 text-gray-500">|</span>
-                <span className="text-gray-300">{mediaReleaseDate}</span>
+                <span className="font-semibold text-lg">{details.vote_average?.toFixed(1)}</span>
               </div>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {details.genres?.map(genre => (
-                  <Link key={genre.id} href={`/genre/${mediaType}/${genre.id}`} className="bg-blue-600 text-white text-sm font-semibold py-1 px-3 rounded-full hover:bg-blue-700 transition-colors duration-300">
-                    {genre.name}
-                  </Link>
-                ))}
+              <span className="text-2xl font-light text-gray-700">|</span>
+              <div className="flex items-center">
+                {/* Calendar Icon */}
+                <svg className="w-5 h-5 fill-current mr-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 4h-2V3a1 1 0 00-2 0v1H9V3a1 1 0 00-2 0v1H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zM5 8h14v11a1 1 0 01-1 1H6a1 1 0 01-1-1V8z" fill="#38bdf8"/>
+                </svg>
+                <span className="text-base">{mediaReleaseDate}</span>
               </div>
-              <p className="text-base text-gray-300 mb-1 leading-relaxed flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+            </div>
+
+            {/* General Info */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-4 mb-6">
+              {/* Director */}
+              <div className="flex items-center text-gray-300">
+                {/* Director Icon (User) */}
+                <svg className="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#facc15"/>
                 </svg>
-                <strong>Director:</strong> {director}
-              </p>
-              <div className="text-base text-gray-300 mb-1 leading-relaxed flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 19H7A5 5 0 0 1 7 9.5a5.5 5.5 0 1 1 10 0a5 5 0 0 1 0 9.5M10 2a2 2 0 1 0-2 2M16 2a2 2 0 1 0-2 2M13 14a2 2 0 1 0 2 2" />
+                <span className="font-semibold text-sm">Sutradara:</span>
+                <span className="ml-2 text-sm text-gray-400">{director}</span>
+              </div>
+
+              {/* Status */}
+              <div className="flex items-center text-gray-300">
+                {/* Status Icon (Checkmark) */}
+                <svg className="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 16.17l-4.17-4.17-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="#4ade80"/>
                 </svg>
-                <div>
-                  <strong>Actors:</strong>
-                  <div className="mt-1">{cast.map(actor => actor.name).join(', ')}</div>
+                <span className="font-semibold text-sm">Status:</span>
+                <span className="ml-2 text-sm text-gray-400">{status}</span>
+              </div>
+              
+              {/* Duration */}
+              {(runtime || episodeRuntime) && (
+                <div className="flex items-center text-gray-300">
+                  {/* Duration Icon (Clock) */}
+                  <svg className="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z" fill="#f87171"/>
+                    <path d="M12 6v6l4 2-1 2-5-3V6z" fill="#f87171"/>
+                  </svg>
+                  <span className="font-semibold text-sm">Durasi:</span>
+                  <span className="ml-2 text-sm text-gray-400">
+                    {runtime ? `${runtime} min` : `${episodeRuntime} min`}
+                  </span>
                 </div>
-              </div>
-              <p className="text-base text-gray-300 mb-1 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="2" ry="2" />
-                  <line x1="12" y1="2" x2="12" y2="22" />
-                  <line x1="2" y1="12" x2="22" y2="12" />
-                  <line x1="2" y1="6" x2="22" y2="6" />
-                  <line x1="2" y1="18" x2="22" y2="18" />
-                  <line x1="6" y1="2" x2="6" y2="22" />
-                  <line x1="18" y1="2" x2="18" y2="22" />
-                </svg>
-                <strong>Status:</strong> {status}
+              )}
+
+              {/* Original Language */}
+              {originalLanguage && (
+                <div className="flex items-center text-gray-300">
+                  {/* Language Icon (Globe) */}
+                  <svg className="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2a10 10 0 00-7.3 16.7A9.92 9.92 0 0012 22a10 10 0 007.3-3.3A9.92 9.92 0 0012 2zM6.5 12a1 1 0 11-1-1 1 1 0 011 1zM17.5 12a1 1 0 11-1-1 1 1 0 011 1zM12 7.5a1 1 0 11-1 1 1 1 0 011-1zM12 16.5a1 1 0 11-1-1 1 1 0 011 1z" fill="#38bdf8"/>
+                  </svg>
+                  <span className="font-semibold text-sm">Bahasa Asli:</span>
+                  <span className="ml-2 text-sm text-gray-400">{originalLanguage.toUpperCase()}</span>
+                </div>
+              )}
+
+              {/* Homepage */}
+              {homepage && (
+                <div className="flex items-center text-gray-300">
+                  {/* Homepage Icon (Home) */}
+                  <svg className="w-5 h-5 fill-current mr-2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81z" fill="#60a5fa"/>
+                  </svg>
+                  <span className="font-semibold text-sm">Homepage:</span>
+                  <Link href={homepage} target="_blank" rel="noopener noreferrer" className="ml-2 text-sm text-blue-400 hover:underline">
+                    Kunjungi
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Actors List */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold text-white mb-2">Aktor</h3>
+              <p className="text-sm text-gray-400 leading-relaxed text-justify">
+                {cast.map(actor => actor.name).join(', ')}
               </p>
-              {runtime && (
-                <p className="text-base text-gray-300 mb-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  <strong>Duration:</strong> {runtime} minutes
-                </p>
-              )}
-              {episodeRuntime && (
-                <p className="text-base text-gray-300 mb-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <polyline points="12 6 12 12 16 14" />
-                  </svg>
-                  <strong>Episode Duration:</strong> {episodeRuntime} minutes
-                </p>
-              )}
-              {details.original_language && (
-                <p className="text-base text-gray-300 mb-1 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" />
-                    <path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20z" />
-                    <line x1="2" y1="12" x2="22" y2="12" />
-                  </svg>
-                  <strong>Original Language:</strong> {details.original_language.toUpperCase()}
-                </p>
-              )}
-              {details.homepage && (
-                <p className="text-base text-gray-300 flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M3 9l9-7l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                  <strong>Homepage:</strong>{' '}
-                  <a href={details.homepage} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-                    {details.homepage}
-                  </a>
-                </p>
-              )}
+            </div>
+
+            {/* Genres */}
+            <div className="flex flex-wrap gap-2">
+              {details.genres?.map(genre => (
+                <Link
+                  key={genre.id}
+                  href={`/genre/${mediaType}/${genre.id}`}
+                  className="bg-blue-600 text-white text-xs font-semibold py-1 px-3 rounded-full hover:bg-blue-700 transition-colors duration-300"
+                >
+                  {genre.name}
+                </Link>
+              ))}
             </div>
           </div>
         </div>
-        
+
+        {/* Synopsis Section */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-white mb-2">Synopsis</h3>
+          <h3 className="text-2xl font-bold text-white mb-4">Sinopsis</h3>
           <p className="text-gray-300 leading-relaxed text-justify">{mediaOverview}</p>
         </div>
-
+        
+        {/* Trailer Section */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold text-white mb-4">Trailer</h3>
           {trailerKey ? (
@@ -288,12 +319,13 @@ export default async function MediaDetailPage({ params }) {
               ></iframe>
             </div>
           ) : (
-            <p className="text-gray-500">No trailer available.</p>
+            <p className="text-gray-500">Tidak ada trailer yang tersedia.</p>
           )}
         </div>
 
+        {/* You Might Also Like Section */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-white mb-4">You Might Also Like</h3>
+          <h3 className="text-2xl font-bold text-white mb-4">Anda Mungkin Juga Menyukai</h3>
           {similarMovies.length > 0 ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
               {similarMovies.map(item => (
@@ -301,12 +333,13 @@ export default async function MediaDetailPage({ params }) {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No similar movies available.</p>
+            <p className="text-gray-500">Tidak ada film serupa yang tersedia.</p>
           )}
         </div>
 
+        {/* User Reviews Section */}
         <div className="mt-12">
-          <h3 className="text-2xl font-bold text-white mb-4">User Reviews</h3>
+          <h3 className="text-2xl font-bold text-white mb-4">Ulasan Pengguna</h3>
           {userReviews.length > 0 ? (
             <div className="space-y-6">
               {userReviews.map(review => (
@@ -316,19 +349,19 @@ export default async function MediaDetailPage({ params }) {
                     {review.author_details.rating && (
                       <div className="flex items-center ml-4 text-yellow-500">
                         <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" fill="#facc15"/>
                         </svg>
                         <span className="text-sm ml-1 text-gray-300">{review.author_details.rating}</span>
                       </div>
                     )}
                   </div>
-                  <p className="text-gray-400 text-sm italic">Created on: {new Date(review.created_at).toLocaleDateString()}</p>
-                  <p className="text-gray-300 mt-4 leading-relaxed">{review.content.split(' ').slice(0, 50).join(' ')}... <Link href={review.url} target="_blank" className="text-blue-400 hover:text-blue-300">Read more</Link></p>
+                  <p className="text-gray-400 text-sm italic">Dibuat pada: {new Date(review.created_at).toLocaleDateString()}</p>
+                  <p className="text-gray-300 mt-4 leading-relaxed text-justify">{review.content.split(' ').slice(0, 50).join(' ')}... <Link href={review.url} target="_blank" className="text-blue-400 hover:text-blue-300">Baca selengkapnya</Link></p>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No reviews available.</p>
+            <p className="text-gray-500">Tidak ada ulasan yang tersedia.</p>
           )}
         </div>
         
