@@ -16,7 +16,8 @@ const BASE_URL = 'https://tmdb-api-proxy.argoyuwono119.workers.dev';
 */
 async function getCategoryData(mediaType, category) {
   try {
-    const response = await fetch(`${BASE_URL}/discover/${mediaType}?sort_by=popularity.desc&api_key=${API_KEY}`);
+    // Perbaikan: menggunakan variabel 'category' untuk memanggil API
+    const response = await fetch(`${BASE_URL}/${mediaType}/${category}?api_key=${API_KEY}`);
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
