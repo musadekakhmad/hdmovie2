@@ -50,6 +50,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="id">
+     <head>
+      {/* Tag Google Search Console */}
+      <meta name="google-site-verification" content="Op253moeSLgz53Zc2b4oZ0oc088akfDPrQLeRsQA008" />
+    </head>
       {/* Menambahkan suppressHydrationWarning untuk mengatasi hydration error. */}
       {/* Ini sering terjadi saat ada script pihak ketiga atau ekstensi browser yang memodifikasi tag body. */}
       <body suppressHydrationWarning={true}>
