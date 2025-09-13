@@ -13,8 +13,8 @@ import Image from 'next/image';
   BASE_URL mengarah ke proxy TMDB untuk menghindari masalah CORS.
   IMAGE_BASE_URL adalah URL dasar untuk gambar poster.
 */
-const API_KEY = 'tmdb-api-proxy.argoyuwono119.workers.dev'; // <-- SILAKAN ISI DENGAN API KEY TMDB ANDA DI SINI
-const BASE_URL = 'https://tmdb-api-proxy.argoyuwono119.workers.dev';
+const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+const BASE_URL = process.env.NEXT_PUBLIC_TMDB_API_URL;
 // URL dasar untuk gambar OG (backdrop)
 const IMAGE_BASE_URL_OG = 'https://image.tmdb.org/t/p/w1280';
 // URL dasar untuk gambar poster
