@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation';
 import WatchClient from './WatchClient';
 
 // Konfigurasi API
-const API_KEY = ''; // <-- ISI DENGAN API KEY ANDA
-const BASE_URL = 'https://tmdb-api-proxy.argoyuwono119.workers.dev';
+const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
+const BASE_URL = process.env.NEXT_PUBLIC_TMDB_API_URL;
 
 // ====================================================================================
 // FUNGSI UNTUK MENDAPATKAN DATA (di sisi server)
