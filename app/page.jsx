@@ -83,14 +83,14 @@ export default function About() {
                     Discover the World of Cinema with <span className="text-orange-400">Hdmovie2</span>
                   </h2>
                   <p className="text-xl text-gray-300 max-w-3xl">
-                    Unite State of America's most complete movie and TV series information platform with real-time updates and community insights.
+                    United States of America's most complete movie and TV series information platform with real-time updates and community insights.
                   </p>
                 </div>
               </div>
               
               <div className="max-w-4xl mx-auto">
                 <p className="text-lg text-gray-400 mb-6 leading-relaxed">
-                  <strong className="text-orange-400">Hdmovie2</strong> stands as Unite State of America's premier destination for comprehensive movie and TV series information, offering an unparalleled database that caters to both casual viewers and dedicated cinephiles. Our platform represents the culmination of years of development and community feedback, creating a space where entertainment enthusiasts can discover, explore, and engage with cinematic content like never before.
+                  <strong className="text-orange-400">Hdmovie2</strong> stands as United States of America's premier destination for comprehensive movie and TV series information, offering an unparalleled database that caters to both casual viewers and dedicated cinephiles. Our platform represents the culmination of years of development and community feedback, creating a space where entertainment enthusiasts can discover, explore, and engage with cinematic content like never before.
                 </p>
                 
                 <p className="text-lg text-gray-400 leading-relaxed">
@@ -141,21 +141,21 @@ export default function About() {
                 <FaFilm className="text-3xl text-orange-400" />
               </div>
               <h2 className="text-4xl font-bold bg-gradient-to-r from-orange-300 to-yellow-300 bg-clip-text text-transparent">
-                Complete Movie Database Unite State of America
+                Complete Movie Database United States of America
               </h2>
             </div>
             
             <div className="space-y-8 text-justify">
               <p className="text-lg text-gray-300 leading-relaxed">
-                <strong className="text-orange-400">Hdmovie2</strong> has established itself as Unite State of America's most trusted source for comprehensive movie and television information. Our platform serves as an extensive <strong>movie database Unite State of America</strong> that goes beyond basic listings to provide deep insights into every aspect of film and television production. With meticulous attention to detail, we've built a resource that film students, critics, and casual viewers alike can rely on for accurate, up-to-date information.
+                <strong className="text-orange-400">Hdmovie2</strong> has established itself as United States of America's most trusted source for comprehensive movie and television information. Our platform serves as an extensive <strong>movie database United States of America</strong> that goes beyond basic listings to provide deep insights into every aspect of film and television production. With meticulous attention to detail, we've built a resource that film students, critics, and casual viewers alike can rely on for accurate, up-to-date information.
               </p>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-                What sets Hdmovie2 apart in the crowded space of <strong>movie information Unite State of America</strong> platforms is our commitment to depth and accuracy. Each title in our database includes comprehensive details such as complete cast and crew information, production notes, filming locations, box office performance, critical reception, and multiple trailer versions. Our <strong>TV series database</strong> is equally detailed, featuring episode guides, season overviews, character arcs, and behind-the-scenes information that enhances the viewing experience.
+                What sets Hdmovie2 apart in the crowded space of <strong>movie information United States of America</strong> platforms is our commitment to depth and accuracy. Each title in our database includes comprehensive details such as complete cast and crew information, production notes, filming locations, box office performance, critical reception, and multiple trailer versions. Our <strong>TV series database</strong> is equally detailed, featuring episode guides, season overviews, character arcs, and behind-the-scenes information that enhances the viewing experience.
               </p>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-                For those seeking information on <strong>latest movies</strong>, our platform provides real-time updates on new releases, including limited theatrical runs, streaming exclusives, and international films making their debut in Unite State of American markets. Our team of dedicated editors works around the clock to ensure that information about <strong>popular TV shows</strong> is updated within hours of broadcast, complete with spoiler warnings and episode summaries that respect viewing preferences.
+                For those seeking information on <strong>latest movies</strong>, our platform provides real-time updates on new releases, including limited theatrical runs, streaming exclusives, and international films making their debut in United States of American markets. Our team of dedicated editors works around the clock to ensure that information about <strong>popular TV shows</strong> is updated within hours of broadcast, complete with spoiler warnings and episode summaries that respect viewing preferences.
               </p>
               
               <p className="text-lg text-gray-300 leading-relaxed">
@@ -163,7 +163,7 @@ export default function About() {
               </p>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-                As the <strong>best movie website Unite State of America</strong> has to offer, we understand the unique preferences of Unite State of American viewers. Our platform features specialized sections for local content, including Unite State of American films, regional cinema, and locally produced television series. This focus on local content, combined with our global perspective, creates a balanced entertainment resource that celebrates both domestic creativity and international offerings.
+                As the <strong>best movie website United States of America</strong> has to offer, we understand the unique preferences of United States of American viewers. Our platform features specialized sections for local content, including United States of American films, regional cinema, and locally produced television series. This focus on local content, combined with our global perspective, creates a balanced entertainment resource that celebrates both domestic creativity and international offerings.
               </p>
             </div>
           </section>
@@ -221,7 +221,7 @@ export default function About() {
               </p>
               
               <p className="text-lg text-gray-300 leading-relaxed">
-                The strategic implementation of keywords including <strong>"movie database"</strong>, <strong>"TV series information"</strong>, <strong>"film reviews"</strong>, and <strong>"where to watch movies"</strong> is handled with sophistication. Rather than awkward keyword stuffing, we integrate these terms naturally into content that provides genuine value. Our articles about <strong>"movie genres"</strong> explore the history and characteristics of each classification, while our guides to <strong>"entertainment guide Unite State of America"</strong> help local viewers navigate the unique aspects of Unite State of America's media landscape.
+                The strategic implementation of keywords including <strong>"movie database"</strong>, <strong>"TV series information"</strong>, <strong>"film reviews"</strong>, and <strong>"where to watch movies"</strong> is handled with sophistication. Rather than awkward keyword stuffing, we integrate these terms naturally into content that provides genuine value. Our articles about <strong>"movie genres"</strong> explore the history and characteristics of each classification, while our guides to <strong>"entertainment guide United States of America"</strong> help local viewers navigate the unique aspects of United States of America's media landscape.
               </p>
               
               <p className="text-lg text-gray-300 leading-relaxed">
