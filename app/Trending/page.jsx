@@ -38,6 +38,6 @@ export default async function TrendingPage() {
 
 // ✅ Tambahkan metadata untuk SEO
 export const metadata = {
-  title: 'Daily Trending - Vegamovies',
-  description: 'Discover daily trending movies and TV series on Vegamovies',
+  title: 'Daily Trending - Hdmovie2',
+  description: 'Discover daily trending movies and TV series on Hdmovie2',
 };
