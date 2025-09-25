@@ -19,7 +19,7 @@ export default function About() {
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="inline-flex items-center gap-2 bg-orange-500/20 px-4 py-2 rounded-full mb-6 border border-orange-500/30">
             <FaAward className="text-orange-400" />
-            <span className="text-orange-300 font-semibold">Unite State of America's #1 Movie Database</span>
+            <span className="text-orange-300 font-semibold">United States of America's #1 Movie Database</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">
