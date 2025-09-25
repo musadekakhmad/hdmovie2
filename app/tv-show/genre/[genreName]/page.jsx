@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
   const title = genre?.name || 'Unknown';
   
   const pageUrl = `https://hdmovie2.vercel.app/tv-show/genre/${genreName}`;
-  const imageUrl = 'https://live.staticflickr.com/65535/54810850199_8c851f136b_b.jpg';
+  const imageUrl = 'https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg';
 
   return {
     title: `Hdmovie2 - ${title} TV Series`,

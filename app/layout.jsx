@@ -13,7 +13,7 @@ export const metadata = {
     siteName: 'Hdmovie2',
     images: [
       {
-        url: 'https://live.staticflickr.com/65535/54810850199_8c851f136b_b.jpg',
+        url: 'https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg',
         width: 1200,
         height: 630,
         alt: 'Hdmovie2 - Watch Movie Stream Movies and Tv Series Free',
@@ -28,7 +28,7 @@ export const metadata = {
     creator: '@WatchStream123',
     title: 'Hdmovie2 | Watch Movie Stream Movies and Tv Series Free',
     description: 'Hdmovie2 is your one-stop destination for free movies, TV shows, and web series. Download thousands of titles in HD quality, with unlimited access to the latest blockbusters and trending series. Start your free entertainment journey today!',
-    images: ['https://live.staticflickr.com/65535/54810850199_8c851f136b_b.jpg'],
+    images: ['https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg'],
   },
   // Tambahkan tag meta eksplisit untuk Facebook
   other: {
