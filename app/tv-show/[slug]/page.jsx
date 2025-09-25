@@ -89,7 +89,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: tvShowData.name,
       description: tvShowData.overview,
-      url: `https://Hdmovie2.vercel.app/tv-show/${slug}`,
+      url: `https://hdmovie2-us.netlify.app/tv-show/${slug}`,
       siteName: 'Hdmovie2',
       images: [{ url: socialImage, width: 1200, height: 630, alt: socialImageAlt }],
       locale: 'en_US',

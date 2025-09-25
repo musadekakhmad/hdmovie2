@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
 
   const title = genre?.name || 'Unknown';
   
-  const pageUrl = `https://hdmovie2.vercel.app/tv-show/genre/${genreName}`;
+  const pageUrl = `https://hdmovie2-us.netlify.app/tv-show/genre/${genreName}`;
   const imageUrl = 'https://live.staticflickr.com/65535/54812181460_747a3f7596_b.jpg';
 
   return {

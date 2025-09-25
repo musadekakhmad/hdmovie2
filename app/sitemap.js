@@ -8,7 +8,7 @@ import {
   getTvSeriesByGenre
 } from '../lib/api';
 
-const BASE_URL = 'https://hdmovie2.vercel.app';
+const BASE_URL = 'https://hdmovie2-us.vercel.app';
 
 // Fungsi utilitas untuk membuat slug
 const createSlug = (name, year) => {
